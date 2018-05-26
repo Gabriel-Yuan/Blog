@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加博客</title>
+    <script type="text/javascript" src="asset/wangEditor/wangEditor.min.js"></script>
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="asset/css/bordered.css">
+    <link rel="stylesheet" href="asset/css/unite.css">
+</head>
+<body>
+<div id="content" class="container container-fluid">
+    <form class="form-horizontal">
+        <div class="form-group">
+            &nbsp;
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" style="background-color: #efefef" placeholder="请输入标题...">
+        </div>
+        <div class="form-group">
+            <div id="article_content">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <button class="bttn-unite bttn-md bttn-danger">发表博客</button>
+            </div>
+           <div class="col-md-1">
+               <button class="bttn-unite bttn-md bttn-danger">取消</button>
+           </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var E=window.wangEditor
+    var editor=new E('#article_content')
+    editor.create()
+</script>
+</body>
+</html>
