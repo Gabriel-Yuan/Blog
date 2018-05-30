@@ -2,41 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>添加博客</title>
+    <title>编辑博客</title>
     <script type="text/javascript" src="asset/wangEditor/wangEditor.min.js"></script>
     <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="asset/css/bordered.css">
     <link rel="stylesheet" href="asset/css/unite.css">
 </head>
 <body>
 <div id="content" class="container container-fluid">
-    <form class="form-horizontal">
-        <div class="form-group">
-            &nbsp;
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" style="background-color: #efefef" placeholder="请输入标题...">
-        </div>
-        <div class="form-group">
-            <div id="article_content">
 
-            </div>
+    <div class="form-group">
+        &nbsp;
+    </div>
+    <div class="form-group">
+        &nbsp;
+    </div>
+    <div id="aid" class="hidden"></div>
+    <div class="form-group">
+        <input type="text"  id="article_title" class="form-control" style="background-color: #efefef" placeholder="请输入标题...">
+    </div>
+    <div class="form-group">
+        <div id="article_content">
+
         </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <button class="bttn-unite bttn-md bttn-danger">发表博客</button>
-            </div>
-           <div class="col-md-1">
-               <button class="bttn-unite bttn-md bttn-danger">取消</button>
-           </div>
-        </div>
-    </form>
+    </div>
+
+    <div class="col-md-10">
+        <button id="subArticle" class="bttn-unite bttn-md bttn-danger">提交</button>
+    </div>
+    <div class="col-md-2">
+        <button id="cancleArticle" class="bttn-unite bttn-md bttn-danger">取消</button>
+    </div>
 </div>
 <script type="text/javascript">
-    var E=window.wangEditor
-    var editor=new E('#article_content')
-    editor.create()
+    window.onload=function (ev) {
+        var E=window.wangEditor;
+        var editor=new E('#article_content');
+        editor.create();
+        $('#subArticle').click(function () {
+            $.ajax({
+                type: "post",
+                url: 'GabrielSaveArticle.action',
+                data: {
+                    s_articleId:$('#aid').text(),
+                    gabriel_articleTitle: $('#article_title').val(),
+                    gabriel_articleContent:editor.txt.html()
+                },
+                dataType: "json",
+                success: function (result) {
+                    window.location.href="main.html";
+                }
+            })
+        });
+        $('#cancleArticle').click(function () {
+            window.location.href="main.html";
+        });
+        $.ajax({
+            type: "post",
+            url: 'GabrielGetArticleById.action',
+            data: {
+                g_articleId: getParams("id")
+
+            },
+            dataType: "json",
+            success:function (result) {
+                $('#article_title').val(result.articleTitle);
+                $('#aid').append(result.articleId);
+                editor.txt.html(result.articleContent);
+            }
+        });
+    };
+
+    function getParams(key) {
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    };
 </script>
 </body>
 </html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" class="ace ace-card-on ace-tab-nav-on ace-main-nav-on ace-sidebar-on" data-theme-color="#c0e3e7">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ace</title>
+    <meta name="description" content="">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="asset/fonts/icomoon/style.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="asset/js/plugins/highlight/solarized-light.css" rel="stylesheet">
+    <link href="asset/css/style.css" rel="stylesheet">
+
+    <!-- Modernizer -->
+    <script type="text/javascript" src="asset/js/vendor/modernizr-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="ace-wrapper">
+    <header id="ace-header" class="ace-container-shift ace-logo-in ace-head-boxed ace-nav-right">
+        <div class="ace-head-inner">
+            <div class="ace-head-container ace-container">
+                <div class="ace-head-row">
+                    <div id="ace-head-col1" class="ace-head-col text-left">
+                        <a id="ace-logo" class="ace-logo" href="main.html">
+                            <img src="asset/img/uploads/brand/logo.svg" alt="ace resume"><span>.Certy</span>
+                        </a>
+                    </div>
+
+                    <div id="ace-head-col2" class="ace-head-col text-right">
+                        <div class="ace-nav-container ace-container hidden-sm hidden-xs">
+                            <nav id="ace-main-nav">
+                                <ul class="clear-list">
+                                    <li>
+                                        <a href="addArticle.html">写博客</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">关于我</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">留言板</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div id="ace-head-col3" class="ace-head-col text-right"></div>
+                </div>
+            </div><!-- .ace-container -->
+        </div><!-- .ace-head-inner -->
+    </header><!-- #ace-header -->
+
+
+    <article id="ace-card" class="ace-card bg-primary">
+        <div class="ace-card-inner text-center">
+            <img class="avatar avatar-195" src="asset/img/gabrielImg.png" width="195" height="195"
+                 alt="">
+            <h1>Gabriel</h1>
+            <p class="text-muted">大学生 | 程序员</p>
+        </div>
+
+        <footer class="ace-card-footer">
+            <div class="text-center">
+                胖虎和Gabriel倾情奉献
+            </div>
+        </footer>
+    </article><!-- #ace-card -->
+
+    <div id="ace-content" class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-paper-stock">
+                <div id="MyArticleList" class="ace-paper clearmsg">
+
+
+                    <!-- .ace-paper-cont -->
+                </div><!-- .ace-paper -->
+            </div><!-- .ace-paper-stock -->
+            <div class="text-center">
+                <nav aria-label="Page navigation">
+                    <ul id="pageBar" class="pagination">
+
+                    </ul>
+                </nav>
+            </div>
+        </div><!-- .ace-container -->
+    </div><!-- #ace-content -->
+
+    <!-- #ace-sidebar -->
+
+    <footer id="ace-footer " class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-footer-cont clear-mrg">
+                <p class="text-center">Copyright &copy; 2018.个人博客 By Gabriel.</p>
+            </div>
+        </div><!-- .ace-container -->
+    </footer><!-- #ace-footer -->
+
+    <!-- Triangle Shapes -->
+    <svg id="ace-bg-shape-1" class="hidden-sm hidden-xs" height="519" width="758">
+        <polygon points="0,455,693,352,173,0,92,0,0,71"
+                 style="fill:#d2d2d2;stroke:purple;stroke-width:0; opacity: 0.5"/>
+    </svg>
+
+    <svg id="ace-bg-shape-2" class="hidden-sm hidden-xs" height="536" width="633">
+        <polygon points="0,0,633,0,633,536" style="fill:#c0e3e7;stroke:purple;stroke-width:0"/>
+    </svg>
+</div><!-- .ace-wrapper -->
+<script type="text/javascript">
+    window.onload = function (ev) {
+        findArticle(1, 10);
+    };
+
+    function findArticle(page, rows) {
+        $.ajax({
+            type: "post",
+            url: 'ArticleFindAction.action',
+            data: {
+                page: page,
+                rows: rows
+            },
+            dataType: "json",
+            success: function (result) {
+                showArticle(result.rows);
+                if (Math.ceil(result.total / 10) !== $('#pageBar').children().length) {
+                    showPageBar(result.total);
+                }
+            }
+        })
+    }
+
+    function showArticle(articles) {
+        $('#MyArticleList').empty();
+        for (var i = 0; i < articles.length; i++) {
+            var box = $('<div></div>');
+            box.addClass('ref-box brd-btm hreview');
+            var bbox = $('<div></div>');
+            bbox.addClass('ref-info');
+            var idBox=$('<div></div>');
+            idBox.addClass('hidden');
+            idBox.append(articles[i].articleId);
+            var abbox = $('<div></div>');
+            abbox.addClass('ref-author');
+            var title = $('<strong></strong>');
+            title.append(articles[i].articleTitle);
+            var date = $('<span></span>');
+            date.append(articles[i].articleDate);
+            var cbox = $('<blockquote></blockquote>');
+            cbox.addClass('ref-cont clear-mrg')
+            var content = $('<p></p>');
+            content.append(articles[i].articleContent);
+            var moreButton=$('<button></button>');
+            moreButton.addClass('btn btn-default alignright');
+            moreButton.append('查看更多');
+            moreButton.click(function () {
+                var id = $(this).next().text();
+             /*   var title=$($(this).next().next().children().get(0)).text();
+                var date=$($(this).next().next().children().get(1)).text();
+                var content = $(this).next().next().next().html();*/
+                // window.location.href='article.html?id='+id+'&title='+encodeURI(encodeURI(title))+'&content='+encodeURI(encodeURI(content)+'&articleDate='+date);
+                window.location.href='article.html?id='+id;
+            });
+            abbox.append(title);
+            abbox.append(date);
+            cbox.append(content);
+            bbox.append(moreButton);
+            bbox.append(idBox);
+            bbox.append(abbox);
+            bbox.append(cbox);
+            box.append(bbox);
+            $('#MyArticleList').append(box)
+        }
+    }
+
+    function showPageBar(pageNum) {
+        $('#pageBar').empty();
+        var li1 = $('<li></li>');
+        for (var i = 0; i < Math.ceil(pageNum / 10); i++) {
+            var li = $('<li></li>');
+            var lia = $('<a></a>');
+            lia.append(i + 1);
+            li.append(lia);
+            if (i === 0) {
+                li.addClass('active');
+            }
+            lia.attr('href', 'javascript:pageButtonClick(' + i + ')');
+            $('#pageBar').append(li);
+        }
+    }
+
+    function pageButtonClick(page) {
+        var uList = $('#pageBar').children();
+        for (var i = 0; i < uList.length; i++) {
+            if ($(uList.get(i)).hasClass('active')) {
+                $(uList.get(i)).removeClass('active');
+            }
+        }
+        $(uList.get(page)).addClass('active');
+        findArticle(page + 1, 10);
+    }
+</script>
+<!-- Scripts -->
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+<!---<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyDiwY_5J2Bkv2UgSeJa4NOKl6WUezSS9XA"></script>--->
+<script type="text/javascript" src="asset/js/plugins/highlight/highlight.pack.js"></script>
+<script type="text/javascript" src="asset/js/plugins/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/progressbar.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/slick.min.js"></script>
+<script type="text/javascript" src="asset/js/options.js"></script>
+<script type="text/javascript" src="asset/js/main.js"></script>
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+

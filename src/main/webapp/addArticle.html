@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加博客</title>
+    <script type="text/javascript" src="asset/wangEditor/wangEditor.min.js"></script>
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="asset/css/bordered.css">
+    <link rel="stylesheet" href="asset/css/unite.css">
+</head>
+<body>
+<div id="content" class="container container-fluid">
+
+        <div class="form-group">
+            &nbsp;
+        </div>
+        <div class="form-group">
+            <input type="text"  id="article_title" class="form-control" style="background-color: #efefef" placeholder="请输入标题...">
+        </div>
+        <div class="form-group">
+            <div id="article_content">
+
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <button id="subArticle" class="bttn-unite bttn-md bttn-danger">发表博客</button>
+        </div>
+        <div class="col-md-2">
+            <button id="cancleArticle" class="bttn-unite bttn-md bttn-danger">取消</button>
+        </div>
+</div>
+<script type="text/javascript">
+   window.onload=function (ev) {
+       var E=window.wangEditor;
+       var editor=new E('#article_content');
+       editor.create();
+       $('#subArticle').click(function () {
+           $.ajax({
+               type: "post",
+               url: 'GabrielSaveArticle.action',
+               data: {
+                   gabriel_articleTitle: $('#article_title').val(),
+                   gabriel_articleContent:editor.txt.html()
+               },
+               dataType: "json",
+               success: function (result) {
+                   alert("博客保存成功！");
+                   window.location.href="main.html";
+               }
+           })
+       });
+       $('#cancleArticle').click(function () {
+           window.location.href="main.html";
+       })
+   }
+</script>
+</body>
+</html>

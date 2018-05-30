@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @Namespace("/")
 @Results({
         @Result(name="login_success",location = "/WEB-INF/super_admin/main.html"),
-        @Result(name="login_fail",location = "admin_login.jsp")
+        @Result(name="login_fail",location = "/admin_login.jsp")
 })
 public class AdminAction extends ActionSupport implements ServletRequestAware {
     private HttpServletRequest request;

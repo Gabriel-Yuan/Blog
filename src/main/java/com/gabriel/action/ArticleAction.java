@@ -15,6 +15,8 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Action(value = "ArticleAction")
@@ -29,6 +31,33 @@ public class ArticleAction extends ActionSupport {
     private Article article;
     private String delIds;
     private String s_articleId;
+    private String g_articleId;
+    private String gabriel_articleTitle;
+    private String gabriel_articleContent;
+
+    public String getG_articleId() {
+        return g_articleId;
+    }
+
+    public void setG_articleId(String g_articleId) {
+        this.g_articleId = g_articleId;
+    }
+
+    public String getGabriel_articleTitle() {
+        return gabriel_articleTitle;
+    }
+
+    public void setGabriel_articleTitle(String gabriel_articleTitle) {
+        this.gabriel_articleTitle = gabriel_articleTitle;
+    }
+
+    public String getGabriel_articleContent() {
+        return gabriel_articleContent;
+    }
+
+    public void setGabriel_articleContent(String gabriel_articleContent) {
+        this.gabriel_articleContent = gabriel_articleContent;
+    }
 
     public ArticleService getArticleService() {
         return articleService;
@@ -97,7 +126,6 @@ public class ArticleAction extends ActionSupport {
             JSONObject result=new JSONObject();
             List<Article> articleList=articleService.articleList(pageBean,article);
             JSONArray jsonArray=new JSONArray();
-            System.out.println(articleList.size());
             for (int i = 0; i < articleList.size(); i++) {
                 Article article=(Article)articleList.get(i);
                 JSONObject jsonObject=new JSONObject();
@@ -167,6 +195,47 @@ public class ArticleAction extends ActionSupport {
             jsonArray.addAll(jsonArray.fromObject(articleService.articleList(null,null)));
             ResponseUtil.write(ServletActionContext.getResponse(), jsonArray);
         }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    @Action(value = "GabrielSaveArticle")
+    public String gabrielSaveArticle(){
+        Article g_article=new Article();
+        if(StringUtil.isNotEmpty(s_articleId)){
+            g_article.setArticleId(Integer.parseInt(s_articleId));
+        }
+        g_article.setArticleTitle(gabriel_articleTitle);
+        g_article.setArticleContent(gabriel_articleContent);
+        Date datedate=new Date();
+        g_article.setArticleDate(datedate);
+       try{
+           int ssNums=0;
+           JSONObject result=new JSONObject();
+           ssNums=  articleService.articleSave(g_article);
+           if(ssNums>0){
+               result.put("success","true");
+           }else {
+               result.put("success","true");
+               result.put("errorMsg","保存失败");
+           }
+           ResponseUtil.write(ServletActionContext.getResponse(),result);
+       }catch (Exception e){
+          e.printStackTrace();
+       }
+        return null;
+    }
+    @Action(value = "GabrielGetArticleById")
+    public String getArticleById(){
+        try {
+            Article article=articleService.getArticleByArticleId(Integer.parseInt(g_articleId));
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("articleId",article.getArticleId());
+            jsonObject.put("articleTitle",article.getArticleTitle());
+            jsonObject.put("articleDate", DateUtil.formatDate(article.getArticleDate(), "yyyy-MM-dd"));
+            jsonObject.put("articleContent",article.getArticleContent());
+            ResponseUtil.write(ServletActionContext.getResponse(),jsonObject);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

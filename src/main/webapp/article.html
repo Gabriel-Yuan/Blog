@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="ace ace-card-on ace-tab-nav-on ace-main-nav-on ace-sidebar-on" data-theme-color="#c0e3e7">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ace</title>
+    <meta name="description" content="">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="asset/fonts/icomoon/style.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="asset/js/plugins/highlight/solarized-light.css" rel="stylesheet">
+    <link href="asset/css/style.css" rel="stylesheet">
+
+    <!-- Modernizer -->
+    <script type="text/javascript" src="asset/js/vendor/modernizr-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="ace-wrapper">
+    <header id="ace-header" class="ace-container-shift ace-logo-in ace-head-boxed ace-nav-right">
+        <div class="ace-head-inner">
+            <div class="ace-head-container ace-container">
+                <div class="ace-head-row">
+                    <div id="ace-head-col1" class="ace-head-col text-left">
+                        <a id="ace-logo" class="ace-logo" href="main.html">
+                            <img src="asset/img/uploads/brand/logo.svg" alt="ace resume"><span>.Certy</span>
+                        </a>
+                    </div>
+
+                    <div id="ace-head-col2" class="ace-head-col text-right">
+                        <div class="ace-nav-container ace-container hidden-sm hidden-xs">
+                            <nav id="ace-main-nav">
+                                <ul class="clear-list">
+                                    <li>
+                                        <a href="addArticle.html">写博客</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">关于我</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">留言板</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- .ace-container -->
+        </div><!-- .ace-head-inner -->
+    </header><!-- #ace-header -->
+
+
+    <article id="ace-card" class="ace-card bg-primary">
+        <div class="ace-card-inner text-center">
+            <img class="avatar avatar-195" src="asset/img/gabrielImg.png" width="195" height="195"
+                 alt="">
+            <h1>Gabriel</h1>
+            <p class="text-muted">大学生 | 程序员</p>
+        </div>
+
+        <footer class="ace-card-footer">
+            <div class="text-center">
+                胖虎和Gabriel倾情奉献
+            </div>
+        </footer>
+    </article><!-- #ace-card -->
+
+    <div id="ace-content" class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-paper-stock">
+                <main class="ace-paper clearfix">
+                    <div class="ace-paper-cont clear-mrg">
+                        <header class="page-header padd-box">
+                            <h1 id="atitle" class="title-lg text-upper"></h1> <br>
+                            <div>
+                                <div style="float: left">发帖日期：</div>
+                                <div id="adate"></div>
+                            </div>
+                            <div>
+                                <span><div style="float: left">博客编号：</div><div id="aId"></div></span>
+                                <div class="btn-group" style="float: right" role="group">
+                                    <button id="editButton" type="button" class="btn btn-default">编辑</button>
+                                    <button id="cancleArticle" type="button" class="btn btn-default">返回主页</button>
+                                </div>
+                                <br>
+                            </div>
+                        </header>
+                        <article class="post hentry">
+                            <div id="acontent" class="post-content entry-content editor clearfix clear-mrg"></div>
+                        </article>
+                    </div>
+                </main>
+            </div><!-- .ace-paper-stock -->
+        </div><!-- .ace-container -->
+    </div><!-- #ace-content -->
+
+    <!-- #ace-sidebar -->
+
+    <footer id="ace-footer" class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-footer-cont clear-mrg">
+                <p class="text-center">Copyright &copy; 2018.个人博客 By Gabriel.</p>
+            </div>
+        </div><!-- .ace-container -->
+    </footer><!-- #ace-footer -->
+
+    <!-- Triangle Shapes -->
+    <svg id="ace-bg-shape-1" class="hidden-sm hidden-xs" height="519" width="758">
+        <polygon points="0,455,693,352,173,0,92,0,0,71"
+                 style="fill:#d2d2d2;stroke:purple;stroke-width:0; opacity: 0.5"/>
+    </svg>
+
+    <svg id="ace-bg-shape-2" class="hidden-sm hidden-xs" height="536" width="633">
+        <polygon points="0,0,633,0,633,536" style="fill:#c0e3e7;stroke:purple;stroke-width:0"/>
+    </svg>
+</div><!-- .ace-wrapper -->
+<script type="text/javascript">
+    window.onload = function (ev) {
+        $.ajax({
+            type: "post",
+            url: 'GabrielGetArticleById.action',
+            data: {
+                g_articleId: getParams("id")
+
+            },
+            dataType: "json",
+            success:function (result) {
+                $('#atitle').append(result.articleTitle);
+                $('#aId').append(result.articleId);
+                $('#adate').append(result.articleDate);
+                $('#acontent').append(result.articleContent);
+            }
+        });
+
+        $('#cancleArticle').click(function () {
+            window.location.href="main.html";
+        });
+        $('#editButton').click(function () {
+            var id = $('#aId').text();
+            window.location.href='editArticle.html?id='+id;
+        })
+    };
+
+    function getParams(key) {
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    };
+</script>
+<!-- Scripts -->
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+<!---<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyDiwY_5J2Bkv2UgSeJa4NOKl6WUezSS9XA"></script>--->
+<script type="text/javascript" src="asset/js/plugins/highlight/highlight.pack.js"></script>
+<script type="text/javascript" src="asset/js/plugins/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/progressbar.min.js"></script>
+<script type="text/javascript" src="asset/js/plugins/slick.min.js"></script>
+<script type="text/javascript" src="asset/js/options.js"></script>
+<script type="text/javascript" src="asset/js/main.js"></script>
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+

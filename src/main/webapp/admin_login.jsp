@@ -25,7 +25,7 @@
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
             <div class="logo_box">
-                <h3>欢迎你</h3>
+                <h3>博客后台管理系统</h3>
                 <form action="Admin_login.action" name="login_form" id="login_form" method="post">
                     <div class="input_outer">
                         <span class="u_user"></span>

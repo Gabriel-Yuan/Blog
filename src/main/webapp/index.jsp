@@ -12,5 +12,6 @@
 </head>
 <body>
 <a href="admin_login.jsp">后台</a>
+<a href="main.html">主页</a>
 </body>
 </html>
