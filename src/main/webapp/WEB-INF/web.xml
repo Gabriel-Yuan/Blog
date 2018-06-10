@@ -5,7 +5,7 @@
          id="WebApp_ID" version="2.5">
     <display-name>S2SHStudentInfoManage</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>Struts2</filter-name>
@@ -21,8 +21,31 @@
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
+
+     <!--log4j2-begin   注意！ 由于使用3.1版本web.xml log4j2 会自动注册 如果使用2.5版本xml 需要手动注册 以下代码-->
+    <listener>
+    <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+
+    <filter>
+    <filter-name>log4jServletFilter</filter-name>
+    <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    <filter-name>log4jServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+     <!--log4j2-end -->
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorPage/error404.html</location>
+    </error-page>
 </web-app>

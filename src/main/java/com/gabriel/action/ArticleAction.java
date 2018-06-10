@@ -15,7 +15,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 

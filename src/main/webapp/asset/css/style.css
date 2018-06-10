@@ -3227,7 +3227,6 @@ yx-axis
 .mCSB_scrollTools .mCSB_buttonDown,
 .mCSB_scrollTools .mCSB_buttonLeft,
 .mCSB_scrollTools .mCSB_buttonRight {
-    background-image: url(mCSB_buttons.png);
     /* css sprites */
     background-repeat: no-repeat;
     opacity: 0.4;
@@ -4457,7 +4456,7 @@ yx-axis
 }
 
 .slick-loading .slick-list {
-    background: url("img/ajax-loader.gif") center center no-repeat;
+    background: url("/asset/img/ajax-loader.gif") center center no-repeat;
 }
 
 .slick-track {

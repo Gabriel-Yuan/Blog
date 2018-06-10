@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" class="ace ace-card-on ace-tab-nav-on ace-main-nav-on ace-sidebar-on" data-theme-color="#c0e3e7">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>相册</title>
+    <meta name="description" content="">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <link href="asset/fonts/icomoon/style.css" rel="stylesheet">
+    <link href="asset/js/plugins/highlight/solarized-light.css" rel="stylesheet">
+    <link href="asset/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <link href="asset/css/unite.css" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<div class="ace-wrapper">
+    <header id="ace-header" class="ace-container-shift ace-logo-in ace-head-boxed ace-nav-right">
+        <div class="ace-head-inner">
+            <div class="ace-head-container ace-container">
+                <div class="ace-head-row">
+                    <div id="ace-head-col1" class="ace-head-col text-left">
+                        <a id="ace-logo" class="ace-logo" href="main.html">
+                            <img src="asset/img/logo.svg" alt="ace resume"><span>.Certy</span>
+                        </a>
+                    </div>
+
+                    <div id="ace-head-col2" class="ace-head-col text-right">
+                        <div class="ace-nav-container ace-container hidden-sm hidden-xs">
+                            <nav id="ace-main-nav">
+                                <ul class="clear-list">
+                                    <li>
+                                        <a id="writeBlog" href="addArticle.html">写博客</a>
+                                    </li>
+                                    <li>
+                                        <a href="photo.html">相册</a>
+                                    </li>
+                                    <li>
+                                        <a href="aboutme.html">关于我</a>
+                                    </li>
+                                    <li>
+                                        <a href="message.html">留言板</a>
+                                    </li>
+                                    <li>
+                                        <div id="u_message">
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a id="changerUserMessage" type="button" class="btn btn-default btn-lg"
+                                           data-toggle="modal"
+                                           data-target="#1exampleModal">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true">修改个人信息</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button id="login_out" type="button" class="btn btn-default btn-lg"
+                                                data-toggle="tooltip" data-placement="left" title="退出登录">
+                                            <span class="glyphicon glyphicon glyphicon-off" aria-hidden="true"></span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <article id="ace-card" class="ace-card bg-primary" style="position: fixed">
+        <div class="ace-card-inner text-center">
+            <img class="avatar avatar-195" src="asset/img/gabrielImg.png" width="195" height="195"
+                 alt="">
+            <span class="h1 text-capitalize">Gabriel</span><br>
+            &nbsp;<br>
+            <p class="text-muted">大学生 | 程序员</p>
+        </div>
+        <div class="ace-card-footer" style="padding-top: 5px;padding-bottom: 5px">
+            <center><p class="text-muted">愿你遇到可以为你上九天揽月，下五洋捉鳖的人！</p></center>
+            <center><p class="text-muted"><font class="font_3" color="#ff8c00" style="font-size: 18px; "
+                                                face="黑体"></font></p></center>
+        </div>
+    </article>
+
+    <div id="ace-content" class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-paper-stock">
+                <main class="ace-paper clearfix">
+                    <div class="ace-paper-cont clear-mrg">
+                        <a id="uploadButtonControl" class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample"
+                           aria-expanded="false" aria-controls="collapseExample">
+                            <span class="glyphicon glyphicon-cloud" aria-hidden="true">上传照片</span>
+                        </a>
+                        <div class="collapse" id="collapseExample">
+                            <div class="well">
+                                <input id="fish_file" name="fish_file" type="file" multiple>
+                            </div>
+                        </div>
+                        <div id="photoList" class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="uploadImages/04.jpg" alt="...">
+                                    <div class="caption">
+                                        <h3>Thumbnail label</h3>
+                                        <p>图片Id：<span>1</span></p>
+                                    </div>
+                                    <div>
+                                        <button class="bttn-unite bttn-default bttn-primary">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+
+                                        <button class="bttn-unite bttn-default bttn-primary" data-toggle="modal"
+                                                data-target="#photoModal">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <nav aria-label="Page navigation">
+                                <ul id="pageBar" class="pagination">
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <button id="upButton" type="button" class="btn btn-primary btn-lg upButton alignright navbar-fixed-bottom hidden"
+            style="right: 50px;left: auto;border-radius: 5px;bottom: 80px;" data-toggle="tooltip" data-placement="left"
+            title="返回顶部">
+        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+    </button>
+    <footer id="ace-footer" class="ace-container-shift">
+        <div class="ace-container">
+            <div class="ace-footer-cont clear-mrg">
+                <p class="text-center">Copyright &copy; 2018.个人博客 By Gabriel.</p>
+            </div>
+        </div>
+    </footer>
+    <svg id="ace-bg-shape-1" class="hidden-sm hidden-xs" height="519" width="758">
+        <polygon points="0,455,693,352,173,0,92,0,0,71"
+                 style="fill:#d2d2d2;stroke:purple;stroke-width:0; opacity: 0.5"/>
+    </svg>
+
+    <svg id="ace-bg-shape-2" class="hidden-sm hidden-xs" height="536" width="633">
+        <polygon points="0,0,633,0,633,536" style="fill:#c0e3e7;stroke:purple;stroke-width:0"/>
+    </svg>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="photoModal" tabindex="-1" role="dialog"
+     aria-labelledby="photoModaLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">查看图片</h4>
+            </div>
+                <div id="Mimg">
+                    <img  src="uploadImages/01.jpg">
+                </div>
+                <div class="hidden">
+                    图片Id：<span id="Mid">1</span>
+                </div>
+            <div class="modal-footer hidden">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <button type="button" class="bttn-unite bttn-sm bttn-primary" data-dismiss="modal">关闭</button>
+                <button id="delete_button" type="button" class="bttn-unite bttn-sm bttn-primary ">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="1exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="1exampleModalLabel">修改个人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="11userName" class="control-label">用户Id:</label>
+                        <span id="Gid"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="11userName" class="control-label">用户名:</label>
+                        <input id="11userName" type="text" name="userName" class="form-control" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="11password" class="control-label">密码:</label>
+                        <input id="11password" type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="11repassword" class="control-label">重复密码:</label>
+                        <input id="11repassword" type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="11sex" class="control-label">性别:</label>
+                        <select id="11sex">
+                            <option>男</option>
+                            <option>女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="11date" class="control-label">出生日期:</label>
+                        <input id="11date" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="11email" class="control-label">E-Mail:</label>
+                        <input id="11email" type="email" name="11email">
+                    </div>
+                    <div class="form-group">
+                        <label for="11desc" class="control-label">备注:</label>
+                        <textarea id="11desc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="11errorMsg" style="color: #985f0d"></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <button type="button" class="bttn-unite bttn-sm bttn-primary" data-dismiss="modal">取消</button>
+                <button id="register_button" type="button" class="bttn-unite bttn-sm bttn-primary ">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!--BootstrapFileInput-->
+<link href="asset/bootstrap-fileinput-master/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="asset/bootstrap-fileinput-master/js/fileinput.js"></script>
+<script src="asset/bootstrap-fileinput-master/js/locales/zh.js"></script>
+<script type="text/javascript" src="asset/js/snowfall.jquery.js"></script>
+<script type="text/javascript">
+    $(document).snowfall('clear');
+    $(document).ready(function(){
+        $(document).snowfall({image:"asset/snowFallImg/y.png", flakeCount:20, minSpeed:0.5, maxSpeed:2,minSize:8, maxSize:30,});
+        $(document).snowfall({image:"asset/snowFallImg/y2.png", flakeCount:20, minSpeed:0.5, maxSpeed:2,minSize:8, maxSize:30,});
+        $(document).snowfall({image:"asset/snowFallImg/2.png", flakeCount:20, minSpeed:0.5, maxSpeed:2,minSize:8, maxSize:30,});
+    });
+    function initFileInput() {
+        $("#fish_file").fileinput({
+            language: 'zh',
+            uploadUrl: "PhotoUpload.action", //上传的地址(访问接口地址)
+            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+            uploadAsync: true, //默认异步上传
+            showUpload: true, //是否显示上传按钮
+            showRemove: true, //显示移除按钮
+            showPreview: true, //是否显示预览
+            showCaption: false,//是否显示标题
+            maxFileCount: 10, //表示允许同时上传的最大文件个数
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: false,//是否显示拖拽区域
+            enctype: 'multipart/form-data',
+            validateInitialCount: true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        }).on("fileuploaded", function (event, data) {
+            alert('上传成功！');
+            window.location.reload();
+        })
+    }
+
+    function getDate() {
+        var today = new Date();
+        var date = today.getFullYear() + "年" + twoDigits(today.getMonth() + 1) + "月" + twoDigits(today.getDate()) + "日";
+        var week = " 星期" + "日一二三四五六 ".charAt(today.getDay());
+        var time = twoDigits(today.getHours()) + ":" + twoDigits(today.getMinutes()) + ":" + twoDigits(today.getSeconds());
+        $(".font_3").html(date + "<br>" + week + "<br>" + time);
+    }
+
+    function twoDigits(val) {
+        if (val < 10) return "0" + val;
+        return val;
+    }
+
+    function loadPhoto(page, rows) {
+        $.ajax({
+            type: "post",
+            url: 'PhotoList.action',
+            data: {
+                page: page,
+                rows: rows
+            },
+            dataType: "json",
+            success: function (result) {
+                showPhoto(result.rows);
+                if (Math.ceil(result.total / 6) !== $('#pageBar').children().length) {
+                    showPageBar(result.total);
+                }
+            }
+        })
+    }
+
+    function showPhoto(photos) {
+        var checkShow=true;
+        $('#photoList').empty();
+        $.ajax({
+            url: 'GetSession.action',
+            dataType: 'json',
+            success: function (result) {
+                if (result.identity === 'false') {
+                    checkShow=false;
+                }
+                for (var i = 0; i < photos.length; i++) {
+                    var img = $('<img>');
+                    img.attr("src", "uploadImages/" + photos[i].pName);
+                    var cDiv = $('<div></div>');
+                    cDiv.addClass('caption');
+                    var h3 = $('<h3></h3>');
+                    h3.append(photos[i].pName);
+                    var p = $('<p></p>');
+                    p.append("图片Id：");
+                    var span = $('<span></span>');
+                    span.append(photos[i].pid);
+                    p.append(span);
+                    cDiv.append(h3);
+                    cDiv.append(p);
+                    var buttonDiv = $('<div></div>');
+                    var button1 = $('<button></button>');
+                    button1.addClass('bttn-unite bttn-default bttn-primary');
+                    var b1Span = $('<span></span>');
+                    b1Span.addClass('glyphicon glyphicon-trash');
+                    button1.append(b1Span);
+                    button1.click(function () {
+                        var id = $(this).next().text();
+                        photoDelete(id);
+                    });
+                    var button2 = $('<button></button>');
+                    button2.addClass('bttn-unite bttn-default bttn-primary');
+                    var b2Span = $('<span></span>');
+                    b2Span.addClass('glyphicon glyphicon-plus');
+                    button2.attr("data-toggle", "modal");
+                    button2.attr("data-target", "#photoModal");
+                    button2.append(b2Span);
+                    button2.click(function () {
+                        var id = $(this).prev().text();
+                        changeModalInfo(id);
+                    });
+                    var ss=$('<span></span>');
+                    ss.append(photos[i].pid);
+                    ss.addClass('hidden');
+                    if(checkShow){
+                        buttonDiv.append(button1);
+                    }
+                    buttonDiv.append(ss);
+                    buttonDiv.append(button2);
+                    var tDiv = $('<div></div>');
+                    tDiv.addClass('thumbnail');
+                    tDiv.append(img);
+                    tDiv.append(cDiv);
+                    tDiv.append(buttonDiv);
+                    var wDiv = $('<div></div>');
+                    wDiv.addClass('col-sm-6 col-md-4');
+                    wDiv.append(tDiv);
+                    $('#photoList').append(wDiv);
+                }
+            }
+        })
+    }
+
+    function showPageBar(pageNum) {
+        $('#pageBar').empty();
+        for (var i = 0; i < Math.ceil(pageNum / 6); i++) {
+            var li = $('<li></li>');
+            var lia = $('<a></a>');
+            lia.append(i + 1);
+            li.append(lia);
+            if (i === 0) {
+                li.addClass('active');
+            }
+            lia.attr('href', 'javascript:pageButtonClick(' + i + ')');
+            $('#pageBar').append(li);
+        }
+    }
+    function changeModalInfo(id) {
+        $.ajax({
+            type: "post",
+            url: 'GetPhotoById.action',
+            data: {
+               Gid: id
+            },
+            dataType: "json",
+            success: function (result) {
+              $('#Mimg').empty();
+              $("#Mid").empty();
+              var im=$('<img>');
+              im.attr("src", "uploadImages/" + result.pName);
+              $('#Mimg').append(im);
+              $("#Mid").append(result.pid);
+            }
+        });
+    }
+
+    function pageButtonClick(page) {
+        var uList = $('#pageBar').children();
+        for (var i = 0; i < uList.length; i++) {
+            if ($(uList.get(i)).hasClass('active')) {
+                $(uList.get(i)).removeClass('active');
+            }
+        }
+        $(uList.get(page)).addClass('active');
+        loadPhoto(page + 1, 6);
+    }
+
+    $(function () {
+        setInterval(getDate, 1000);
+    });
+
+    $(window).scroll(function () {
+        var sc = $(window).scrollTop();
+        if (sc < 500) $('#upButton').addClass("hidden");
+        else $('#upButton').removeClass("hidden");
+    });
+    $('#upButton').click(function () {
+        $('html , body').animate({scrollTop: 0}, 'fast');
+    });
+
+    function photoDelete(delIds) {
+        $.ajax({
+            type: "post",
+            url: 'PhotoDelete.action',
+            data: {
+                delIds: delIds
+            },
+            dataType: "json",
+            success: function (result) {
+                alert('删除成功！');
+                window.location.reload();
+            }
+        });
+    }
+    window.onload = function (ev) {
+        initFileInput();
+        loadPhoto(1, 6);
+        $('#changerUserMessage').click(function () {
+            $.ajax({
+                url: 'GetSession.action',
+                dataType: 'json',
+                success: function (result) {
+                    var Gid = result.id;
+                    $('#Gid').append(Gid);
+                    $.ajax({
+                        url: 'GetUserByIdAction.action',
+                        dataType: 'json',
+                        data: {
+                            Gid: Gid
+                        },
+                        success: function (result) {
+                            $('#11userName').val(result.userName);
+                            $('#11password').val(result.password);
+                            $('#11repassword').val(result.password);
+                            $('#11sex').val(result.sex);
+                            $('#11email').val(result.email);
+                            $('#11date').val(result.birthday);
+                            $('#11desc').val(result.userDesc);
+                        }
+                    })
+                }
+            });
+        });
+
+        $('#deleteButton').click(function () {
+            var id=$('#Mid').text();
+            photoDelete(id);
+        });
+        $('#register_button').click(function () {
+            var userName = $('#11userName').val();
+            var password = $('#11password').val();
+            var repassword = $('#11repassword').val();
+            var sex = $('#11sex').val();
+            var email = $('#11email').val();
+            var birthday = $('#11date').val();
+            var desc = $('#11desc').val();
+            if (userName == '') {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("用户名不能为空！");
+                return;
+            } else if (password == '') {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("密码不能为空！");
+                return;
+            } else if (repassword == '') {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("重复密码不能为空！");
+                return;
+            } else if (repassword !== password) {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("两次密码不一致！");
+                return;
+            } else if (email == '') {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("邮箱不能为空！");
+                return;
+            } else if (!$("input[name='11email']").val().match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("邮箱格式不正确！");
+                return;
+            } else if (birthday == '') {
+                $('#11errorMsg').empty();
+                $('#11errorMsg').append("出生日期不能为空！");
+                return;
+            }
+            console.log($('#Gid').innerHTML);
+            $.ajax({
+                type: "post",
+                url: 'UserChangeAction.action',
+                data: {
+                    Gid: $('#Gid').text(),
+                    GuserName: $('#11userName').val(),
+                    Gpassword: $('#11password').val(),
+                    Gsex: $('#11sex').val(),
+                    Gemail: $('#11email').val(),
+                    Gbirthday: $('#11date').val(),
+                    Gdesc: $('#11desc').val(),
+                },
+                dataType: "json",
+                success:
+                    function (result) {
+                        if (result.success === 'true') {
+                            alert("保存成功")
+                            window.location.href = 'main.html'
+                        } else {
+                            $('#11errorMsg').empty();
+                            $('#11errorMsg').append(result.errorMsg);
+                        }
+
+                    }
+            })
+        });
+        $('#login_out').click(function () {
+            $.ajax({
+                url: 'DeleteSession.action',
+                success: function () {
+                    alert("退出登录成功，点击确定返回登录页！");
+                    window.location.href = 'index.html'
+                }
+            })
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        $.ajax({
+            url: 'GetSession.action',
+            dataType: 'json',
+            success: function (result) {
+                if (result.checkLogin === 'false') {
+                    alert("您未登录，请返回登录页，进行登录！");
+                    window.location.href = 'index.html'
+                }
+                $('#u_message').append(" 当前用户：" + result.currentUser);
+                if (result.identity === 'false') {
+                    $('#writeBlog').addClass('hidden');
+                    $('#uploadButtonControl').addClass('hidden');
+                    $('#delete_button').addClass('hidden');
+                } else {
+                    $('#changerUserMessage').addClass('hidden')
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>
+

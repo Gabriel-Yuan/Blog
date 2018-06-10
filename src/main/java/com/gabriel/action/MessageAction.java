@@ -19,6 +19,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Action(value = "MessageAction")
@@ -39,15 +40,26 @@ public class MessageAction extends ActionSupport {
     private Article article;
     private String messageId;
     private User user;
-    private String s_mArticleId;
+
     private String s_mUserId;
 
-    public String getS_mArticleId() {
-        return s_mArticleId;
+    private String UMessageContent;
+    private String UMid;
+
+    public String getUMessageContent() {
+        return UMessageContent;
     }
 
-    public void setS_mArticleId(String s_mArticleId) {
-        this.s_mArticleId = s_mArticleId;
+    public void setUMessageContent(String UMessageContent) {
+        this.UMessageContent = UMessageContent;
+    }
+
+    public String getUMid() {
+        return UMid;
+    }
+
+    public void setUMid(String UMid) {
+        this.UMid = UMid;
     }
 
     public String getS_mUserId() {
@@ -167,9 +179,6 @@ public class MessageAction extends ActionSupport {
                 user = userService.getUserById(message.getmUserId());
                 jsonObject.put("UserName", user.getUserName());
                 jsonObject.put("UserId", user.getId());
-                article = articleService.getArticleByArticleId(message.getmArticleId());
-                jsonObject.put("ArticleId",article.getArticleId());
-                jsonObject.put("ArticleTitle", article.getArticleTitle());
                 jsonArray.add(jsonObject);
             }
             int total = messageService.messageCount(message);
@@ -220,5 +229,24 @@ public class MessageAction extends ActionSupport {
             e.printStackTrace();
         }
             return null;
+    }
+    @Action(value = "UMessageSaveAction")
+    public String USave() throws Exception{
+        Message message=new Message();
+        message.setMessageContent(UMessageContent);
+        message.setmUserId(Integer.parseInt(UMid));
+        Date datedate=new Date();
+        message.setMessageDate(datedate);
+        int saveNums=0;
+        JSONObject result=new JSONObject();
+        saveNums=messageService.messageSave(message);
+        if(saveNums>0){
+            result.put("success","true");
+        }else {
+            result.put("success","true");
+            result.put("errorMsg","保存失败");
+        }
+        ResponseUtil.write(ServletActionContext.getResponse(),result);
+        return null;
     }
 }

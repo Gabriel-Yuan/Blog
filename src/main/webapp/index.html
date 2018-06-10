@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/demo.css"/>
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="asset/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="asset/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="asset/css/component.css"/>
+    <link href="asset/css/unite.css" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<div class="container-fluid demo-1" style="padding: 0">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="logo_box">
+                <h3>个人博客</h3>
+                <div name="login_form" id="login_form">
+                    <div class="input_outer">
+                        <span class="u_user"></span>
+                        <input id="userName" name="userName" class="text" style="color: #FFFFFF !important" type="text"
+                               placeholder="请输入账户">
+                    </div>
+                    <div class="input_outer">
+                        <span class="us_uer"></span>
+                        <input id="password" name="password" class="text"
+                               style="color: #FFFFFF !important; position:absolute; z-index:100;" value=""
+                               type="password" placeholder="请输入密码">
+                    </div>
+                    <span>没有账户？<a href="#" data-toggle="modal"
+                                  data-target="#1exampleModal" style="color: #f88a4d">注册</a></span>
+                    <div class="mb2"><a id="login_button" class="act-but submit" style="color: #FFFFFF">登录</a></div>
+                    <span id="errorMsg" style="color: #dcff00"></span>
+                    <div class="mb2"><a href="#" style="color: #FFFFFF;position: fixed;bottom: 10px;margin-left: 115px"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal">后台管理登录</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">后台管理登录</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="userName" class="control-label">用户名:</label>
+                        <input id="1userName" type="text" name="userName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">密码:</label>
+                        <input id="1password" type="password" name="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="1errorMsg" style="color: #985f0d"></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <button type="button" class="bttn-unite bttn-sm bttn-primary" data-dismiss="modal">取消</button>
+                <button id="1login_button" type="button" class="bttn-unite bttn-sm bttn-primary ">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="1exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="1exampleModalLabel">注册</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="userName" class="control-label">用户名:</label>
+                        <input id="11userName" type="text" name="userName" class="form-control" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">密码:</label>
+                        <input id="11password" type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">重复密码:</label>
+                        <input id="11repassword" type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">性别:</label>
+                        <select id="11sex">
+                            <option>男</option>
+                            <option>女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">出生日期:</label>
+                        <input id="11date" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="11email" class="control-label">E-Mail:</label>
+                        <input id="11email" type="email" name="11email">
+                    </div>
+                    <div class="form-group">
+                        <label for="11desc" class="control-label">备注:</label>
+                        <textarea id="11desc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="11errorMsg" style="color: #985f0d"></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <button type="button" class="bttn-unite bttn-sm bttn-primary" data-dismiss="modal">取消</button>
+                <button id="register_button" type="button" class="bttn-unite bttn-sm bttn-primary ">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        document.onkeydown = function (ev) {
+            if (ev.key == 'Enter') {
+                login();
+            }
+        }
+    });
+    $('#login_button').click(function () {
+       login();
+    });
+    $('#1login_button').click(function () {
+        if ($('1userName').val() == '' || $('#1password').val() == '') {
+            $('#1errorMsg').empty();
+            $('#1errorMsg').append("用户名或者密码为空！");
+        } else {
+            var userName = $('#1userName').val().toString();
+            var password = $('#1password').val().toString();
+            $.ajax({
+                type: "post",
+                url: 'Admin_login.action',
+                data: {
+                    userName: userName,
+                    password: password
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result.success === 'true') {
+                        $('#1errorMsg').empty();
+                        window.location.href = 'BackJump.action'
+                    } else {
+                        $('#1errorMsg').empty();
+                        $('#1errorMsg').append(result.errorMsg);
+                    }
+
+                }
+            })
+        }
+    });
+
+    function login() {
+        if ($('#userName').val() == '' || $('#password').val() == '') {
+            $('#errorMsg').empty();
+            $('#errorMsg').append("用户名或者密码为空！");
+        } else {
+            var userName = $('#userName').val().toString();
+            var password = $('#password').val().toString();
+            $.ajax({
+                type: "post",
+                url: 'LoginFindAction.action',
+                data: {
+                    userName: userName,
+                    password: password
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result.success === 'true') {
+                        window.location.href = 'main.html'
+                    } else {
+                        $('#errorMsg').empty();
+                        $('#errorMsg').append(result.errorMsg);
+                    }
+
+                }
+            })
+        }
+    }
+
+    $('#register_button').click(function () {
+        var userName = $('#11userName').val();
+        var password = $('#11password').val();
+        var repassword = $('#11repassword').val();
+        var sex = $('#11sex').val();
+        var email = $('#11email').val();
+        var birthday = $('#11date').val();
+        var desc = $('#11desc').val();
+        if (userName == '') {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("用户名不能为空！");
+            return;
+        } else if (password == '') {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("密码不能为空！");
+            return;
+        } else if (repassword == '') {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("重复密码不能为空！");
+            return;
+        } else if (repassword !== password) {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("两次密码不一致！");
+            return;
+        } else if (email == '') {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("邮箱不能为空！");
+            return;
+        } else if (!$("input[name='11email']").val().match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("邮箱格式不正确！");
+            return;
+        } else if (birthday == '') {
+            $('#11errorMsg').empty();
+            $('#11errorMsg').append("出生日期不能为空！");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: 'UserRegisterAction.action',
+            data: {
+                GuserName: $('#11userName').val(),
+                Gpassword: $('#11password').val(),
+                Gsex: $('#11sex').val(),
+                Gemail: $('#11email').val(),
+                Gbirthday: $('#11date').val(),
+                Gdesc: $('#11desc').val(),
+            },
+            dataType: "json",
+            success:
+                function (result) {
+                    if (result.success === 'true') {
+                        alert("注册成功！点击确定返回登录。")
+                        window.location.href = 'index.html'
+                    } else {
+                        $('#11errorMsg').empty();
+                        $('#11errorMsg').append(result.errorMsg);
+                    }
+
+                }
+        })
+    })
+</script>
+<script src="asset/js/TweenLite.min.js"></script>
+<script src="asset/js/EasePack.min.js"></script>
+<script src="asset/js/rAF.js"></script>
+<script src="asset/js/demo-1.js"></script>
+</body>
+</html>

@@ -16,4 +16,5 @@ public interface UserDao {
     public int userSave(User user)throws Exception;
 
     public User getUserById(int id) throws Exception;
+
 }

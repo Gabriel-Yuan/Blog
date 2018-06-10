@@ -10,14 +10,14 @@ public class Message {
     private String messageContent;
     private Date messageDate;
     private int mUserId;
-    private int mArticleId;
 
-    public Message(int messageId, String messageContent, Date messageDate, int mUserId, int mArticleId) {
+
+    public Message(int messageId, String messageContent, Date messageDate, int mUserId) {
         this.messageId = messageId;
         this.messageContent = messageContent;
         this.messageDate = messageDate;
         this.mUserId = mUserId;
-        this.mArticleId = mArticleId;
+
     }
 
     public Message() {
@@ -63,15 +63,7 @@ public class Message {
         this.mUserId = mUserId;
     }
 
-    @Basic
-    @Column(name = "m_article_id")
-    public int getmArticleId() {
-        return mArticleId;
-    }
 
-    public void setmArticleId(int mArticleId) {
-        this.mArticleId = mArticleId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -82,7 +74,7 @@ public class Message {
 
         if (messageId != message.messageId) return false;
         if (mUserId != message.mUserId) return false;
-        if (mArticleId != message.mArticleId) return false;
+
         if (messageContent != null ? !messageContent.equals(message.messageContent) : message.messageContent != null)
             return false;
         if (messageDate != null ? !messageDate.equals(message.messageDate) : message.messageDate != null) return false;
@@ -96,7 +88,7 @@ public class Message {
         result = 31 * result + (messageContent != null ? messageContent.hashCode() : 0);
         result = 31 * result + (messageDate != null ? messageDate.hashCode() : 0);
         result = 31 * result + mUserId;
-        result = 31 * result + mArticleId;
+
         return result;
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    private static Logger logger=LogManager.getLogger(UserDaoImpl.class.getName());
     private SessionFactory sessionFactory;
     @Override
     public List<User> userList(PageBean pageBean, User user) throws Exception {
@@ -32,6 +35,7 @@ public class UserDaoImpl implements UserDao {
             query.setMaxResults(pageBean.getRows());
         }
         userList=(List<User>)query.list();
+        logger.info("查询到"+userList.size()+"位用户！");
         return userList;
     }
 
@@ -51,6 +55,7 @@ public class UserDaoImpl implements UserDao {
         Session session=this.getSession();
         Query query=session.createQuery("delete from User where id in ("+delIds+")");
         int count=query.executeUpdate();
+        logger.info("删除用户,Id为："+delIds);
         return count;
     }
 
@@ -58,6 +63,7 @@ public class UserDaoImpl implements UserDao {
     public int userSave(User user) throws Exception {
         Session session=this.getSession();
         session.merge(user);
+        logger.info("注册用户："+user.getUserName());
         return 1;
     }
 

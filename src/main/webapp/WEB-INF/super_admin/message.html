@@ -70,7 +70,7 @@
             $("#messageContent").val("");
             $("#messageDate").datebox("setValue","");
             $("#userId").combobox("setValue","");
-            $("#ArticleId").combobox("setValue","");
+
         }
 
         function closeMessageDialog(){
@@ -89,7 +89,6 @@
             $("#messageContent").val(row.messageContent);
             $("#messageDate").datebox("setValue",row.messageDate);
             $("#userId").combobox("setValue",row.userId);
-            $("#ArticleId").combobox("setValue",row.ArticleId);
             url="MessageSaveAction.action?messageId="+row.messageId;
         }
     </script>
@@ -105,8 +104,6 @@
         <th field="messageDate" width="50" align="center">留言时间</th>
         <th field="UserId" width="30" align="center" >留言用户Id</th>
         <th field="UserName" width="30" align="center" >留言用户</th>
-        <th field="ArticleId" width="30" align="center">所属博客Id</th>
-        <th field="ArticleTitle" width="30" align="center">所属博客</th>
     </tr>
     </thead>
 </table>
@@ -136,10 +133,6 @@
                 <tr>
                     <td>所属用户：</td>
                     <td><input class="easyui-combobox" id="userId" name="message.mUserId"  data-options="panelHeight:'auto',editable:false,valueField:'id',textField:'userName',url:'UserComboListAction.action'"/></td>
-                </tr>
-                <tr>
-                    <td>所属博客：</td>
-                    <td><input class="easyui-combobox" id="ArticleId" name="message.mArticleId"  data-options="panelHeight:'auto',editable:false,valueField:'articleId',textField:'articleTitle',url:'ArticleComboListAction.action'"/></td>
                 </tr>
             </table>
         </form>
