@@ -4,8 +4,6 @@
 
 路径： /pom.xml
 
-文档访问地址： https://apidoc.gitee.com/Chuan18/Blog
-
 使用Struts2+Hibernate+Spring进行开发。
 
 数据库使用的是MySql 5.7，已导出为sql文件（blog.sql）
